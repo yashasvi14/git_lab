@@ -54,12 +54,20 @@ jobs:
         model_filename="model_${timestamp}_dt_model.joblib"
         mv $model_filename $GITHUB_WORKSPACE/models/$model_filename
 
+    - name: Commit and push changes
+      env:
+        GH_PAT: ${{ secrets.GH_PAT }}
+      run: |
+        git add metrics/$metrics_filename models/$model_filename
+        git commit -m "Add metrics and updated model"
+        git push https://yashasvi14:${{ secrets.GH_PAT }}@github.com/yashasvi14/git_lab.git main
+
     - name: Commit and Push Changes
       run: |
         git config --global user.email "83763628+yashasvi14@users.noreply.github.com"
         git config --global user.name "yashasvi14"
         git add $GITHUB_WORKSPACE/metrics/$metrics_filename $GITHUB_WORKSPACE/models/$model_filename
         git commit -m "Add metrics and updated model"
-        git push
+        git push https://yashasvi14:${{ secrets.GH }}@github.com/yashasvi14/git_lab.git main
       env:
-        GITHUB_TOKEN: ${{ secrets.GH }}
+        GH_PAT:: ${{ secrets.GH }}
