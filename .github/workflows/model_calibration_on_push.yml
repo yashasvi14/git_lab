@@ -60,6 +60,6 @@ jobs:
         git config --global user.name "yashasvi14"
         git add $GITHUB_WORKSPACE/metrics/$metrics_filename $GITHUB_WORKSPACE/models/$model_filename
         git commit -m "Add metrics and updated model"
-        git push https://yashasvi14:${{ secrets.GH }}@github.com/yashasvi14/git_lab.git main
+        git push https://yashasvi14:${{ secrets.GH_PAT }}@github.com/yashasvi14/git_lab.git main
       env:
-        GH_PAT:: ${{ secrets.GH }}
+        GH_PAT:: ${{ secrets.GH_PAT }}
